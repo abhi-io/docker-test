@@ -73,13 +73,16 @@ WSGI_APPLICATION = 'djangopj.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
+import environ
+env = environ.Env()
+environ.Env.read_env(env_file=".env")
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'django-db',
-        'USER': 'django',
-        'PASSWORD': 'django',
+        'NAME': env('MYSQL_DATABASE'),  
+        'USER': env('MYSQL_USER'),
+        'PASSWORD': env('MYSQL_PASSWORD'),
         'HOST': 'db',
         'PORT': '3306'
     }
