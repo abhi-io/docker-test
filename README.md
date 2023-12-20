@@ -5,3 +5,5 @@
 # stop & remove container
 
 `docker-compose down`
+# new
+`docker compose up  --build`
