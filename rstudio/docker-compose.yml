@@ -1,0 +1,22 @@
+version: '3.9'
+
+services:
+  rstudio:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8787:8787"
+    environment:
+      # Environment variables for RStudio Server
+      PASSWORD: "your_password" # Replace with a secure password
+      DISABLE_AUTH: "true" # Disable internal authentication for SSO
+      OAUTH2_CLIENT_ID: "your_client_id" # Replace with OAuth2 client ID
+      OAUTH2_CLIENT_SECRET: "your_client_secret" # Replace with OAuth2 client secret
+      OAUTH2_PROVIDER: "your_oauth_provider" # Specify your OAuth 2.0 provider
+      OAUTH2_REDIRECT_URI: "http://localhost:8787/auth-callback" # Replace with your redirect URI
+    volumes:
+      - rstudio-data:/home/rstudio
+
+volumes:
+  rstudio-data:
